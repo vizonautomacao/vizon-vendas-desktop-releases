@@ -1,0 +1,35 @@
+{
+  "version": "2.2.68",
+  "fix": "FIX67-R2",
+  "status": "published",
+  "verified_at": "2026-11-06T19:20:15Z",
+  "repository": "vizonautomacao/vizon-vendas-desktop-releases",
+  "release_id": 434282035,
+  "release_tag": "v2.2.67",
+  "release_url": "https://github.com/vizonautomacao/vizon-vendas-desktop-releases/releases/tag/v2.2.67",
+  "updater_manifest_url": "https://github.com/vizonautomacao/vizon-vendas-desktop-releases/releases/latest/download/latest.json",
+  "manifest": {
+    "version": "2.2.68",
+    "downloadUrl": "https://github.com/vizonautomacao/vizon-vendas-desktop-releases/releases/download/v2.2.67/VIZON-VENDAS-Setup-2.2.68-Windows10-x86-x64.exe",
+    "sha256": "b57995e08fa6b47d81e805b98153ee06f7de7d7846085f55a0cbd59cf8ed4f42",
+    "fileName": "VIZON-VENDAS-Setup-2.2.68-Windows10-x86-x64.exe",
+    "notes": "FIX67-R2: oculta interface de pendências; telefone/WhatsApp opcional na Venda a Prazo; mantém SYNC e regras de crédito."
+  },
+  "installer": {
+    "file_name": "VIZON-VENDAS-Setup-2.2.68-Windows10-x86-x64.exe",
+    "size_bytes": 98993434,
+    "sha256": "b57995e08fa6b47d81e805b98153ee06f7de7d7846085f55a0cbd59cf8ed4f42",
+    "asset_id": 718262431
+  },
+  "verification": {
+    "workflow_run_url": "https://github.com/vizonautomacao/vizon-vendas-desktop-releases/actions/runs/42278701502",
+    "exact_updater_endpoint": "passed",
+    "public_installer_download_sha256": "passed",
+    "previous_assets_preserved": true,
+    "previous_manifest_asset_id": 710453944
+  },
+  "source_generator": {
+    "file_name": "VIZON-VENDAS-2.2.68-FIX67-R2-GERADOR-LOCAL.zip",
+    "sha256": "37baef845555f3b3537dd1dfc5f616e2e04c87ab029d0dda40dc63abbe406ac6"
+  }
+}
