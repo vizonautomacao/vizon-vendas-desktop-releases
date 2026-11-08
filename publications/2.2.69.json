@@ -1,0 +1,31 @@
+{
+  "version": "2.2.69",
+  "fix": "FIX68-R4-R2",
+  "status": "published",
+  "verified_at": "2026-11-08T17:09:11Z",
+  "repository": "vizonautomacao/vizon-vendas-desktop-releases",
+  "release_id": 434282035,
+  "release_tag": "v2.2.67",
+  "release_url": "https://github.com/vizonautomacao/vizon-vendas-desktop-releases/releases/tag/v2.2.67",
+  "updater_manifest_url": "https://github.com/vizonautomacao/vizon-vendas-desktop-releases/releases/latest/download/latest.json",
+  "manifest": {
+    "version": "2.2.69",
+    "downloadUrl": "https://github.com/vizonautomacao/vizon-vendas-desktop-releases/releases/download/v2.2.67/VIZON-VENDAS-Setup-2.2.69-Windows10-x86-x64.exe",
+    "sha256": "496ff61efbd7740e88e7164f7aa74767fe9aa349b8ed1da8fe67ae7368f91661",
+    "fileName": "VIZON-VENDAS-Setup-2.2.69-Windows10-x86-x64.exe",
+    "notes": "FIX68-R4-R2. Promoções combinadas na grade e na impressão. F3 abre o catálogo com navegação por teclado. L abre Receber Venda a Prazo. No recebimento, 2 conclui sem imprimir e 3 imprime."
+  },
+  "installer": {
+    "file_name": "VIZON-VENDAS-Setup-2.2.69-Windows10-x86-x64.exe",
+    "size_bytes": 99023010,
+    "sha256": "496ff61efbd7740e88e7164f7aa74767fe9aa349b8ed1da8fe67ae7368f91661",
+    "asset_id": 724581963
+  },
+  "verification": {
+    "exact_updater_endpoint": "passed",
+    "public_installer_download_sha256": "passed",
+    "previous_assets_preserved": true,
+    "previous_manifest_asset_id": 718262968,
+    "previous_manifest_url": "https://github.com/vizonautomacao/vizon-vendas-desktop-releases/releases/download/v2.2.67/latest-2.2.68-718262968.json"
+  }
+}
