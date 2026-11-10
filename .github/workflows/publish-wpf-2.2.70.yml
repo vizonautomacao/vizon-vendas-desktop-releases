@@ -1,0 +1,60 @@
+name: Ativar VIZON VENDAS 2.2.70
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/publish-wpf-2.2.70.yml']
+permissions:
+  contents: write
+jobs:
+  activate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Validar e ativar manifesto
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,time,urllib.request
+          repo='vizonautomacao/vizon-vendas-desktop-releases'
+          base='https://api.github.com/repos/'+repo
+          public='https://github.com/'+repo+'/releases/'
+          def fetch(url, method='GET', payload=None, api=False):
+              headers={'User-Agent':'VIZON-WPF','Cache-Control':'no-cache'}
+              if api: headers.update({'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Content-Type':'application/json','Accept':'application/vnd.github+json'})
+              with urllib.request.urlopen(urllib.request.Request(url, data=json.dumps(payload).encode() if payload is not None else None, headers=headers, method=method),timeout=120) as f: return f.read()
+          def api(path,method='GET',payload=None):
+              return json.loads(fetch(base+path,method,payload,True))
+          def sha(data): return hashlib.sha256(data).hexdigest()
+          r=api('/releases/latest')
+          assert r['id']==434282035 and r['tag_name']=='v2.2.67'
+          a={x['name']:x for x in r['assets']}
+          old=a['latest.json']
+          new=a['latest-2.2.70.json']
+          assert old['id']==724582236 and new['id']==729790736
+          m=json.loads(fetch(new['browser_download_url']))
+          assert m['version']=='2.2.70' and m['sha256']=='6f9743da8824d4a32221440b817715cb479a0a74bdcc8fb37bbb2195edda1548'
+          exe=a[m['fileName']]
+          assert exe['id']==729790535 and m['downloadUrl']==exe['browser_download_url']
+          assert sha(fetch(m['downloadUrl']))==m['sha256']
+          print('Instalador público verificado',flush=True)
+          def rename(asset,name): return api('/releases/assets/'+str(asset),'PATCH',{'name':name})
+          rename(old['id'],'latest-2.2.69-724582236.json')
+          try:
+              rename(new['id'],'latest.json')
+          except Exception:
+              current=api('/releases/assets/'+str(new['id']))
+              if current['name']!='latest.json':
+                  rename(old['id'],'latest.json')
+                  raise
+          header='# VIZON VENDAS WPF 2.2.70 — FIX68-R5\n\nNo F5 — Consultar Preço, o código fica selecionado após a consulta, pronto para a próxima leitura. A consulta não adiciona itens à venda.\n\n---\n\n'
+          api('/releases/434282035','PATCH',{'name':'VIZON VENDAS 2.2.70 — FIX68-R5 (canal existente)','body':header+(r['body'] or '')})
+          for _ in range(36):
+              try:
+                  if json.loads(fetch(public+'latest/download/latest.json'))==m:
+                      print('CANAL VERIFICADO 2.2.70',flush=True)
+                      break
+              except (OSError,ValueError): pass
+              time.sleep(10)
+          else: raise RuntimeError('Manifesto público ainda não confirmado')
+          PY
